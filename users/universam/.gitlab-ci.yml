@@ -1,0 +1,25 @@
+stages:
+  - test
+
+QMK Firmware:
+  stage: test
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  tags:
+    - linux
+  image: ubuntu:18.10
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y build-essential avr-libc binutils-arm-none-eabi binutils-avr dfu-programmer dfu-util gcc gcc-arm-none-eabi git libnewlib-arm-none-eabi gcc-avr python3 unzip wget zip
+    - avr-gcc --version
+    - uname -a
+  script:
+    - make test:all
+    - make planck/rev6:default planck/rev5:default
+    - make keebio/iris/rev2:universam keebio/iris/rev2:universam_old ergodox_ez:universam ergodox_ez:universam_glow keebio/viterbi/rev1:universam orthodox/rev1:universam orthodox/rev3:universam crkbd:universam planck/light:universam planck/rev6:universam fractal:universam primekb/prime_m:universam -j2 --output-sync
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
+    paths:
+      - ./*.hex
+      - ./*.bin
+    expire_in: 1 month
