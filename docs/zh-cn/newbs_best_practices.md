@@ -138,11 +138,7 @@ To abort and get back to the state before "git rebase", run "git rebase --abort"
 这告诉我们有一个合并冲突，并给出带有冲突的文件的名称。在文本编辑器中打开冲突的文件，在该文件的某个位置，您会发现如下内容：
 
 ```
-<<<<<<< HEAD
 <p>For help with any issues, email us at support@webhost.us.</p>
-=======
-<p>Need help? Email support@webhost.us.</p>
->>>>>>> Commit #1
 ```
 
  `<<<<<<< HEAD`行标记合并冲突的开始, `>>>>>>> Commit #1` 行标记结束, 冲突选项被 `=======`分隔。`HEAD`那端的部分来自文件的qmk master版本，标记有commit消息的部分来自当前的分支持和提交。

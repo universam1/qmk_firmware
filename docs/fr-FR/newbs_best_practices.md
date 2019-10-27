@@ -136,11 +136,7 @@ To abort and get back to the state before "git rebase", run "git rebase --abort"
 Ceci nous dit que nous avons un conflit de merge, et nous donne le nom du fichier en conflit. Ouvrez le fichier conflictuel dans votre éditeur de texte et, quelque part dans le fichier, vous trouverez quelque chose comme ça:
 
 ```bash
-<<<<<<< HEAD
 <p>For help with any issues, email us at support@webhost.us.</p>
-=======
-<p>Need help? Email support@webhost.us.</p>
->>>>>>> Commit #1
 ```
 
 La ligne `<<<<<<< HEAD` montre le début d'un conflit de merge et la ligne `>>>>>>> Commit #1` indique la fin, avec les sections conflictuelles séparées par `=======`. La partie du côté `HEAD` vient de la version du fichier provenant de la branche master de QMK, et la partie marquée avec le numéro du commit provient de la branche courrante.
