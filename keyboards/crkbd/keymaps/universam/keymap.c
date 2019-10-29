@@ -37,67 +37,12 @@ void add_keylog(uint16_t keycode);
 
 enum crkbd_keycodes { RGBRST = NEW_SAFE_RANGE };
 
-// clang-format off
-#define LAYOUT_crkbd_base( \
-    K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, \
-    K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, \
-    K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A  \
-  ) \
-  LAYOUT_wrapper( \
-    KC_ESC,  K01,    K02,     K03,      K04,     K05,                        K06,     K07,     K08,     K09,     K0A,     KC_MINS, \
-    ALT_T(KC_TAB), K11,  K12, K13,      K14,     K15,                        K16,     K17,     K18,     K19,     K1A, RALT_T(KC_QUOT), \
-    OS_LSFT, CTL_T(K21), K22, K23,      K24,     K25,                        K26,     K27,     K28,     K29, RCTL_T(K2A), OS_RSFT, \
-                                        KC_GRV,  KC_SPC,  BK_LWER, DL_RAIS,  KC_ENT,  OS_RGUI                                      \
-  )
-#define LAYOUT_crkbd_base_wrapper(...)       LAYOUT_crkbd_base(__VA_ARGS__)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT_crkbd_base_wrapper(
-    _________________QWERTY_L1_________________, _________________QWERTY_R1_________________,
-    _________________QWERTY_L2_________________, _________________QWERTY_R2_________________,
-    _________________QWERTY_L3_________________, _________________QWERTY_R3_________________
-  ),
-
-  [_COLEMAK] = LAYOUT_crkbd_base_wrapper(
-    _________________COLEMAK_L1________________, _________________COLEMAK_R1________________,
-    _________________COLEMAK_L2________________, _________________COLEMAK_R2________________,
-    _________________COLEMAK_L3________________, _________________COLEMAK_R3________________
-  ),
-
-  [_DVORAK] = LAYOUT_crkbd_base_wrapper(
-    _________________DVORAK_L1_________________, _________________DVORAK_R1_________________,
-    _________________DVORAK_L2_________________, _________________DVORAK_R2_________________,
-    _________________DVORAK_L3_________________, _________________DVORAK_R3_________________
-  ),
-
-  [_WORKMAN] = LAYOUT_crkbd_base_wrapper(
-    _________________WORKMAN_L1________________, _________________WORKMAN_R1________________,
-    _________________WORKMAN_L2________________, _________________WORKMAN_R2________________,
-    _________________WORKMAN_L3________________, _________________WORKMAN_R3________________
-  ),
-
-  [_NORMAN] = LAYOUT_crkbd_base_wrapper(
-    _________________NORMAN_L1_________________, _________________NORMAN_L1_________________,
-    _________________NORMAN_L2_________________, _________________NORMAN_R2_________________,
-    _________________NORMAN_L3_________________, _________________NORMAN_R3_________________
-  ),
-
-  [_MALTRON] = LAYOUT_crkbd_base_wrapper(
-    _________________MALTRON_L1________________, _________________MALTRON_R1________________,
-    _________________MALTRON_L2________________, _________________MALTRON_R2________________,
-    _________________MALTRON_L3________________, _________________MALTRON_R3________________
-  ),
-
-  [_EUCALYN] = LAYOUT_crkbd_base_wrapper(
-    _________________EUCALYN_L1________________, _________________EUCALYN_R1________________,
-    _________________EUCALYN_L2________________, _________________EUCALYN_R2________________,
-    _________________EUCALYN_L3________________, _________________EUCALYN_R3________________
-  ),
-
-  [_CARPLAX] = LAYOUT_crkbd_base_wrapper(
-    _____________CARPLAX_QFMLWY_L1_____________, _____________CARPLAX_QFMLWY_R1_____________,
-    _____________CARPLAX_QFMLWY_L2_____________, _____________CARPLAX_QFMLWY_R2_____________,
-    _____________CARPLAX_QFMLWY_L3_____________, _____________CARPLAX_QFMLWY_R3_____________
+[_QWERTY] = LAYOUT_wrapper( \
+    KC_ESC,        KC_Q,        KC_W,  KC_E,  KC_R,  KC_T,                  KC_Y,  KC_U,  KC_I,    KC_O,    KC_P,             KC_MINS,
+    ALT_T(KC_TAB), KC_A,        KC_S,  KC_D,  KC_F,  KC_G,                  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,          RALT_T(KC_QUOT),
+    OS_LSFT,       CTL_T(KC_Z), KC_X,  KC_C,  KC_V,  KC_B,                  KC_N,  KC_M,  KC_COMM, KC_DOT,  RCTL_T(KC_SLASH), OS_RSFT,
+                      KC_GRAVE,   KC_SPC,  LT(_LOWER, KC_BSPC),         LT(_RAISE, KC_DEL), KC_ENT,  OSM(MOD_RGUI)
   ),
 
   [_MODS] = LAYOUT_wrapper(
@@ -108,24 +53,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LOWER] = LAYOUT_wrapper(
-    KC_F11,  _________________LOWER_L1__________________,                    _________________LOWER_R1__________________, KC_F11,
-    KC_F12,  _________________LOWER_L2__________________,                    _________________LOWER_R2__________________, KC_PIPE,
-    _______, _________________LOWER_L3__________________,                    _________________LOWER_R3__________________, _______,
+    KC_F11,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                    KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_F11,
+    KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                      _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+    _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                     _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
                                      _______, _______, _______,        _______, _______, _______
   ),
 
   [_RAISE] = LAYOUT_wrapper( \
-    _______, _________________RAISE_L1__________________,                    _________________RAISE_R1__________________, _______,
-    _______, _________________RAISE_L2__________________,                    _________________RAISE_R2__________________, KC_BSLS,
-    _______, _________________RAISE_L3__________________,                    _________________RAISE_R3__________________, _______,
+    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                      KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,
+    _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                       KC_6,    KC_7,    KC_8,    KC_9,       KC_0, _______,
+    _______, ___________________BLANK___________________,                    ___________________BLANK___________________, KC_BSLS,
                                      _______, _______, _______,        _______, _______, _______
   ),
 
   [_ADJUST] = LAYOUT_wrapper( \
-    KC_MAKE, _________________ADJUST_L1_________________,                    _________________ADJUST_R1_________________, KC_RESET,
-    VRSN,    _________________ADJUST_L2_________________,                    _________________ADJUST_R2_________________, EEP_RST,
-    MG_NKRO, _________________ADJUST_L3_________________,                    _________________ADJUST_R3_________________, RGB_IDL,
-                                     HPT_TOG, KC_NUKE, _______,        _______, TG_MODS, HPT_FBK
+    KC_MAKE, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG,                    KC_ASDN, KC_ASUP, KC_ASRP, KC_ASON, KC_ASOFF, KC_RESET,
+    VRSN,    MU_TOG , CK_TOGG, AU_ON,   AU_OFF,  CG_NORM,                    CG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN, EEP_RST,
+    MG_NKRO, RGB_RMOD,RGB_HUD,RGB_SAD, RGB_VAD, KC_RGB_T,                    MG_NKRO, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT, RGB_IDL,
+                                     _______, _______, _______,        _______, _______, TG(_MODS)
   )
 };
 // clang-format on
@@ -354,25 +299,30 @@ void rgb_matrix_indicators_user(void) {
         switch (biton32(layer_state)) {
             case _GAMEPAD:
                 rgb_matrix_layer_helper(HSV_ORANGE, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_ORANGE, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             case _DIABLO:
                 rgb_matrix_layer_helper(HSV_RED, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_RED, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             case _RAISE:
                 rgb_matrix_layer_helper(HSV_YELLOW, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_YELLOW, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             case _LOWER:
                 rgb_matrix_layer_helper(HSV_GREEN, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_GREEN, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             case _ADJUST:
-                rgb_matrix_layer_helper(HSV_RED, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_CORAL, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_CORAL, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             default: {
                 check_default_layer(IS_LAYER_ON(_MODS), LED_FLAG_UNDERGLOW);
                 break;
             }
         }
-        check_default_layer(0, LED_FLAG_MODIFIER);
+        // check_default_layer(0, LED_FLAG_MODIFIER);
     }
 }
 #endif
