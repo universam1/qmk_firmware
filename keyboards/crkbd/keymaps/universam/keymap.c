@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,        KC_Q,        KC_W,  KC_E,  KC_R,  KC_T,                  KC_Y,  KC_U,  KC_I,    KC_O,    KC_P,             KC_MINS,
     ALT_T(KC_TAB), KC_A,        KC_S,  KC_D,  KC_F,  KC_G,                  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,          RALT_T(KC_QUOT),
     OS_LSFT,       CTL_T(KC_Z), KC_X,  KC_C,  KC_V,  KC_B,                  KC_N,  KC_M,  KC_COMM, KC_DOT,  RCTL_T(KC_SLASH), OS_RSFT,
-                      KC_GRAVE,   KC_SPC,  LT(_LOWER, KC_BSPC),         LT(_RAISE, KC_DEL), KC_ENT,  OSM(MOD_RGUI)
+                      KC_GRAVE,  LT(_LOWER, KC_BSPC), KC_SPC,            KC_ENT, LT(_RAISE, KC_DEL), OSM(MOD_RGUI)
   ),
 
   [_MODS] = LAYOUT_wrapper(
@@ -314,8 +314,8 @@ void rgb_matrix_indicators_user(void) {
                 rgb_matrix_layer_helper(HSV_GREEN, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             case _ADJUST:
-                rgb_matrix_layer_helper(HSV_CORAL, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
-                rgb_matrix_layer_helper(HSV_CORAL, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
+                rgb_matrix_layer_helper(HSV_BLUE, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
+                rgb_matrix_layer_helper(HSV_BLUE, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
                 break;
             default: {
                 check_default_layer(IS_LAYER_ON(_MODS), LED_FLAG_UNDERGLOW);
