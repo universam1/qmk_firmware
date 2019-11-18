@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 #    include "rgb_stuff.h"
 #endif
+#include "osx.h"
 
 /* Define layer names */
 enum userspace_layers {
